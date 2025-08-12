@@ -17,6 +17,7 @@ body {
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  background-color: var(--Cinza);
 }
 
 main {
