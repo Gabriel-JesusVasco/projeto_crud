@@ -22,7 +22,31 @@ const api = {
             alert('Algum erro inesperado aconteceu no salvamentode dados');
             throw error;
         };
-    }
+    },
+    async buscarPensamentoParaAlterar(id) {
+        try {
+            const repostaRequisicao = await fetch(`http://localhost:3000/pensamentos/${id}`);
+            return await repostaRequisicao.json();
+        } catch (error) {
+            alert('Algum erro inesperado aconteceu na busca do pensamento');
+            throw error;
+        }
+    },
+    async alterarPensamento(pensamento) {
+        try {
+            const repostaRequisicao = await fetch(`http://localhost:3000/pensamentos/${pensamento.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(pensamento)
+            });
+            return await repostaRequisicao.json();
+        } catch (error) {
+            alert('Algum erro inesperado aconteceu na alteração do pensamento');
+            throw error;
+        };
+    },
 };
 
 export default api;
