@@ -2,6 +2,7 @@ import api from "./api.js";
 const listaPensamentos = document.getElementById('lista-pensamentos');
 const renderizacao = {
   async exporPensamentosTela() {
+    listaPensamentos.innerHTML = ''
     try {
       let pensamentos = await api.buscarDados();
       pensamentos.forEach(renderizacao.adicionarPensamentosLista);
@@ -40,6 +41,11 @@ const renderizacao = {
     const iconeApagarPensamento = document.createElement('img');
     iconeApagarPensamento.classList.add('botao-excluir');
     iconeApagarPensamento.src = "assets/imagens/icone-excluir.png";
+
+    iconeApagarPensamento.addEventListener('click', async ()=>{
+      await api.apagarPensamento(pensamento.id);
+      renderizacao.exporPensamentosTela()
+    })
 
     const iconesPensamento = document.createElement('div');
     iconesPensamento.classList.add('icones');
