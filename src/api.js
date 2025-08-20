@@ -1,8 +1,9 @@
+const urlPrincipal = "http://localhost:3000";
 const api = {
     async buscarDados() {
         try {
-            const repostaRequisicao = await fetch('http://localhost:3000/pensamentos');
-            return await repostaRequisicao.json();
+            const repostaRequisicao = await axios.get(`${urlPrincipal}/pensamentos`);
+            return await repostaRequisicao.data;
         } catch (error) {
             alert('Algum erro inesperado aconteceu na busca de dados');
             throw error;
@@ -10,23 +11,17 @@ const api = {
     },
     async salvarNovoDado(pensamento) {
         try {
-            const repostaRequisicao = await fetch('http://localhost:3000/pensamentos', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(pensamento)
-            });
-            return await repostaRequisicao.json();
+            const repostaRequisicao = await axios.post(`${urlPrincipal}/pensamentos`, pensamento);
+            return await repostaRequisicao.data;
         } catch (error) {
-            alert('Algum erro inesperado aconteceu no salvamentode dados');
+            alert('Algum erro inesperado aconteceu no salvamento de dados');
             throw error;
         };
     },
     async buscarPensamentoParaAlterar(id) {
         try {
-            const repostaRequisicao = await fetch(`http://localhost:3000/pensamentos/${id}`);
-            return await repostaRequisicao.json();
+            const repostaRequisicao = await axios.get(`${urlPrincipal}/pensamentos/${id}`);
+            return await repostaRequisicao.data;
         } catch (error) {
             alert('Algum erro inesperado aconteceu na busca do pensamento');
             throw error;
@@ -34,14 +29,8 @@ const api = {
     },
     async alterarPensamento(pensamento) {
         try {
-            const repostaRequisicao = await fetch(`http://localhost:3000/pensamentos/${pensamento.id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(pensamento)
-            });
-            return await repostaRequisicao.json();
+            const repostaRequisicao = await axios.put(`${urlPrincipal}/pensamentos/${pensamento.id}`,pensamento );
+            return await repostaRequisicao.data;
         } catch (error) {
             alert('Algum erro inesperado aconteceu na alteração do pensamento');
             throw error;
@@ -49,11 +38,9 @@ const api = {
     },
     async apagarPensamento(id) {
         try {
-            const repostaRequisicao = await fetch(`http://localhost:3000/pensamentos/${id}`, {
-                method: "DELETE"
-            });
+            const repostaRequisicao = await axios.delete(`${urlPrincipal}/pensamentos/${id}`);
         } catch (error) {
-            alert('Algum erro inesperado aconteceu na alteração do pensamento');
+            alert('Algum erro inesperado aconteceu na exclusão do pensamento');
             throw error;
         };
     },

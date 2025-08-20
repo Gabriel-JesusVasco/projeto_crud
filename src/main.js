@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const inputAutoria = document.getElementById('pensamento-autoria');
         inputConteudo.value = ""
         inputAutoria.value = ""
-    })
-})
+    });
+});
 async function manipularEnvioFormulario(evento) {
 evento.preventDefault();
 const id = document.getElementById('pensamento-id').value;
@@ -19,13 +19,14 @@ const conteudo = document.getElementById('pensamento-conteudo').value;
 const autoria = document.getElementById('pensamento-autoria').value;
     try {
         if (id) {
-            await api.alterarPensamento({ id, conteudo, autoria})
+            await api.alterarPensamento({ id, conteudo, autoria});
         }
         else {
             await api.salvarNovoDado({ conteudo, autoria });
         }
         renderizacao.exporPensamentosTela();
+        formularioEnvioPensamento.reset();
     } catch (error) {
-        alert('algum erro inesperado ocorreu');
+        alert('algum erro inesperado ocorreu no salvamento de sua citação');
     };
 };

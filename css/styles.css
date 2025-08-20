@@ -283,3 +283,14 @@ span {
   background: #041832;
   margin: 96px 0 48px 0;
 }
+.lista_vazia{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lista_vazia_mensagem{
+  font-size: 2rem;
+}
+.hidden{
+  display: none;
+}

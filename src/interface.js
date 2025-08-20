@@ -7,7 +7,7 @@ const renderizacao = {
       let pensamentos = await api.buscarDados();
       pensamentos.forEach(renderizacao.adicionarPensamentosLista);
     } catch (error) {
-      alert('Ocorreu algum erro')
+      alert('Ocorreu algum erro na renderização das citações');
     };
   },
   adicionarPensamentosLista(pensamento) {
@@ -44,26 +44,32 @@ const renderizacao = {
 
     iconeApagarPensamento.addEventListener('click', async ()=>{
       await api.apagarPensamento(pensamento.id);
-      renderizacao.exporPensamentosTela()
-    })
+      renderizacao.exporPensamentosTela();
+    });
 
     const iconesPensamento = document.createElement('div');
     iconesPensamento.classList.add('icones');
     iconesPensamento.append(iconeEditarPensamento);
-    iconesPensamento.append(iconeApagarPensamento)
+    iconesPensamento.append(iconeApagarPensamento);
 
     itemListaPensamentos.append(aspasImagem);
     itemListaPensamentos.append(pensamentoConteudo);
     itemListaPensamentos.append(pensamentoAutoria);
-    itemListaPensamentos.append(iconesPensamento)
-    listaPensamentos.append(itemListaPensamentos)
+    itemListaPensamentos.append(iconesPensamento);
+    listaPensamentos.append(itemListaPensamentos);
+
+    if (listaPensamentos !== "") {
+      const secaoListaVazia = document.querySelector('.lista_vazia');
+      secaoListaVazia.classList.add('hidden');
+    }
   },
   async preencherFormularioAlteracao(pensamentoId){
       const pensamento = await api.buscarPensamentoParaAlterar(pensamentoId);
-      document.getElementById('pensamento-id').value = pensamento.id
+      document.getElementById('pensamento-id').value = pensamento.id;
       document.getElementById('pensamento-conteudo').value = pensamento.conteudo;
       document.getElementById('pensamento-autoria').value = pensamento.autoria;
-  }
+  },
+  
 };
 export default renderizacao;
 

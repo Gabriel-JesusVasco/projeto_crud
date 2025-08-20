@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CRUD de Pensamentos</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
     <script type="module" defer src="src/api.js"></script>
     <script type="module" defer src="src/main.js"></script>
     <script type="module" defer src="src/interface.js"></script>
@@ -65,6 +66,10 @@
       <span></span>
       <section id="lista-pensamentos-container">
         <h3>Meu Mural</h3>
+        <div class="lista_vazia">
+          <h3 class="lista_vazia_mensagem">Lista vazia, que tal adicionar alguma citação!?</h3>
+          <img src="assets/imagens/lista-vazia.png" alt="">
+        </div>
         <ul id="lista-pensamentos"></ul>
       </section>
     </main>
